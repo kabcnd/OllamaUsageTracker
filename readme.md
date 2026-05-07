@@ -2,7 +2,7 @@
 
 A lightweight, premium WPF overlay for monitoring your **Ollama Cloud** usage quotas in real-time. Designed to stay out of your way while keeping you informed.
 
-![App Screenshot](app_screenshot_mockup_1778174099818.png)
+![App Screenshot](screenshot.png)
 
 ## ✨ Features
 
