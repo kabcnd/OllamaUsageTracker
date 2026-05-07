@@ -1,31 +1,52 @@
-# Ollama/Usage Tracker - Architecture
+# 🦙 Ollama Usage Tracker
 
-## Обзор (Overview)
-Приложение представляет собой легковесный трей-виджет на C# (WPF), который отображает статистику использования (Session usage и Weekly usage) поверх всех окон. Окно имеет размер 90x120 пикселей, не имеет стандартных рамок и поддерживает перетаскивание мышью.
+A lightweight, premium WPF overlay for monitoring your **Ollama Cloud** usage quotas in real-time. Designed to stay out of your way while keeping you informed.
 
-## Архитектура
-Приложение будет построено на базе WPF (Windows Presentation Foundation) с использованием паттерна MVVM или простого Code-Behind для минимизации размера.
+![App Screenshot](app_screenshot_mockup_1778174099818.png)
 
-### Основные компоненты:
-1. **Трей-иконка (Tray Icon):**
-   - Интеграция через NotifyIcon.
-   - Меню: Показать/Скрыть, Выход.
+## ✨ Features
 
-2. **Главное окно (Overlay Window):**
-   - Характеристики: `WindowStyle="None"`, `AllowsTransparency="True"`, `Topmost="True"`, `Width="90"`, `Height="120"`.
-   - Перетаскивание: обработчик `MouseLeftButtonDown` -> `DragMove()`.
-   - Отрисовка: простые графики (Polyline).
+- **Minimalist Overlay**: A tiny (90x120px) borderless window that stays on top of all other windows.
+- **Real-Time Tracking**: Automatically fetches Session and Weekly usage percentages every 10 seconds (configurable).
+- **Visual Analytics**: Dynamic line charts showing usage trends.
+- **Smart Auth**: Integrated `WebView2` login flow—captures session cookies securely without ever storing your password.
+- **Tray Integration**: Runs in the system tray with a quick-access menu for settings and visibility toggles.
+- **Debug Mode**: Detailed logging for troubleshooting.
 
-3. **Логика сбора данных (Data Fetcher):**
-   - Фоновый сбор данных (1 раз в 10 секунд).
-   - Получение данных со страницы `https://ollama.com/settings` (требует авторизации/куки).
+## 🚀 Quick Start
 
-4. **Хранение данных (Data Storage):**
-   - Хранение истории "Session usage" и "Weekly usage" для отрисовки графиков.
+1. **Clone the Repo**:
+   ```bash
+   git clone https://github.com/kabcnd/OllamaUsageTracker.git
+   cd OllamaUsageTracker
+   ```
+2. **Build and Run**:
+   Open the solution in Visual Studio or run via CLI:
+   ```bash
+   dotnet run
+   ```
+3. **Login**:
+   - Right-click the Ollama icon in the system tray.
+   - Select **Settings**.
+   - Click **Login to Ollama**.
+   - Sign in through the secure browser window. Once you reach the settings page, the app will automatically capture your session.
 
-## План разработки
-1. **Исследование:** Выяснить способ парсинга или API для получения Session usage и Weekly usage с сайта.
-2. **Прототип интерфейса:** Создание WPF окна (90x120) и иконки.
-3. **Реализация логики сбора:** HttpClient с передачей куки для получения статистики.
-4. **Отрисовка графиков:** Привязка данных к UI.
-5. **Тестирование.**
+## ⚙️ Configuration
+
+Settings are stored in `settings.json` (created on first run):
+
+| Setting | Description |
+| :--- | :--- |
+| `CookieValue` | Your active session cookie (captured automatically). |
+| `DebugEnabled` | Set to `true` to enable logging to `debug.log`. |
+| `UpdateIntervalSeconds` | Frequency of data updates (default: 10s). |
+
+## 🛠️ Development
+
+- **Framework**: .NET 8.0 WPF
+- **Icons**: SVG rendering via `Svg` library.
+- **Automation**: GitHub CLI integrated for deployment.
+
+---
+
+*Made for the Ollama community. If you find this useful, give it a ⭐!*
