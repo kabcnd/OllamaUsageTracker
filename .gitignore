@@ -1,0 +1,22 @@
+# Build folders
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# App configuration and logs
+settings.json
+debug.log
+
+# VS files
+.vs/
+*.sqlite3
+
+# Test artifacts
+*.html
+*.txt
